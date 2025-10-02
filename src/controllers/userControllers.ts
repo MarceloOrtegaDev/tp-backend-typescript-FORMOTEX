@@ -2,7 +2,7 @@ import { Response, Request } from "express";
 import { userService } from "../services/user.services";
 import { IUser } from "../interfaces/user.interface";
 
-const ServiceForUsers = new userService()
+export const ServiceForUsers = new userService()
 
 export const loginUser = async (req:Request, res:Response): Promise<void> => {
     const {email, password} = req.body

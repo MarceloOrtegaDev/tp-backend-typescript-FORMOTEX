@@ -7,6 +7,7 @@ import { ConectDb } from "./database/db"
 import { MONGO_DB_CONNECTION } from "./Env/env"
 import cookieParser from "cookie-parser"
 import { userRoute } from "./routes/userRoutes"
+import { inventoryRoute } from "./routes/inventoryRoute"
 
 const app = express()
 
@@ -15,7 +16,8 @@ app.use(cors())
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(cookieParser())
-app.use("/api",userRoute)
+app.use("/auth",userRoute)
+app.use("/api", inventoryRoute)
 
 
 app.listen(3000, ()=>{

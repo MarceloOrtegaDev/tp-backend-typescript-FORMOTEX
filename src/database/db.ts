@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-export const mongoUrl:string = "mongodb://localhost:27017/";
 import { conectionDb } from "../interfaces/IDataBase";
 
 export class ConectDb implements conectionDb {
