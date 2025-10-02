@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose"
-import mongoose from "mongoose"
+import mongoose, { Document } from "mongoose"
+import { IUser } from "../interfaces/user.interface"
 
-const userSchema = new mongoose.Schema ({
+const userSchema = new mongoose.Schema<IUser> ({
     name: {
         type: String,
         required: true
@@ -16,9 +16,10 @@ const userSchema = new mongoose.Schema ({
         required: true
     },
     Role: {
+        default: "user",
         type: String,
         required: false
     }
 })
 
-export const userModel = mongoose.model("User", userSchema)
+export const userModel = mongoose.model<IUser>("User", userSchema)

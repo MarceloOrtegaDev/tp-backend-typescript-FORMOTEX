@@ -1,3 +1,4 @@
+//! Trabajo de Marcelo Ortega
 import express from "express"
 import cors from "cors"
 import helmet from "helmet"
@@ -14,7 +15,7 @@ app.use(cors())
 app.use(morgan("dev"))
 app.use(helmet())
 app.use(cookieParser())
-app.use(userRoute)
+app.use("/api",userRoute)
 
 
 app.listen(3000, ()=>{

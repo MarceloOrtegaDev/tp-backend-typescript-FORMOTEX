@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { createUser } from "../controllers/userControllers";
+import { registerUser, getAllUsers, loginUser, getUserForId, deleteUser, updateUser } from "../controllers/userControllers";
+import { validarJwt } from "../jwt/validarJwt/validateJwt";
 export const userRoute = Router();
 
-userRoute.post("/api/register", createUser)
-// userRoute.post("/api/login",loginUser)
-// userRoute.get("/api/auth",validarJwt, authUser)
-// userRoute.get("/api/logout", logoutUser)
+userRoute.post("/login", loginUser)
+userRoute.post("/register", registerUser)
+userRoute.get("/getAllUsers",validarJwt, getAllUsers)
+userRoute.get("/getUserForId/:_id", validarJwt, getUserForId)
+userRoute.delete("/deleteUser/:_id", validarJwt, deleteUser)
+userRoute.patch("/editarUsuario/:_id", validarJwt, updateUser)
 
