@@ -35,7 +35,7 @@ export const registerUser = async (req:Request, res:Response) => {
         }
         res.status(200).json("Usuario creado correctamente")
     } catch (error) {
-        res.status(404).json("No se pudo crear la cuenta")
+        res.status(404).json("ERROR")
     }
 }
 
@@ -80,9 +80,7 @@ export const deleteUser = async (req:Request, res:Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-    if (req.user.Role !== "admin") {
-        res.status(403).json("No tienes acceso a esta función");
-    }
+    ServiceForUsers.checkAdmin(req.user)
 
     const { _id } = req.params;
     const { name, email, password } = req.body;
@@ -94,5 +92,21 @@ export const updateUser = async (req: Request, res: Response) => {
         res.status(500).json({ msg: error.message || "Hubo un error al editar el usuario" });
     }
 };
+
+/* {
+  "numeroSerie": "SN123456789",
+  "marca": "Dell",
+  "modelo": "OptiPlex 7090",
+  "tipo": "desktop",
+  "estado": "disponible",
+  "ubicacion": "Sucursal Sur",
+  "fechaCompra": "2025-10-01T00:00:00.000+00:00",
+  "garantiaHasta": "2028-10-01T00:00:00.000+00:00",
+  "asignadoA": null,
+  "fechaAsignacion": null,
+  "createdAt": "2025-10-07T11:00:00.000+00:00",
+  "updatedAt": "2025-10-07T11:00:00.000+00:00"
+}
+*/
 
 
